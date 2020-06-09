@@ -1,0 +1,59 @@
+module segdisplay (
+    input    sys_clk  ,       // system clock
+    input    sys_rst_n,  
+ 
+    output[5:0]sel,
+    output[7:0]seg_led
+ 
+);
+ 
+//*****************************************************
+//**                    main code
+//*****************************************************
+wire[6:0] seg_data_0;
+seg_decoder seg_decoder_m0(
+    .bin_data  (1'b0),
+    .seg_led  (seg_data_0)
+);
+wire[6:0] seg_data_1;
+seg_decoder seg_decoder_m1(
+    .bin_data  (1'b0),
+    .seg_led  (seg_data_1)
+);
+wire[6:0] seg_data_2;
+seg_decoder seg_decoder_m2(
+    .bin_data  (1'b0),
+    .seg_led  (seg_data_2)
+);
+wire[6:0] seg_data_3;
+seg_decoder seg_decoder_m3(
+    .bin_data  (1'b0),
+    .seg_led  (seg_data_3)
+);
+wire[6:0] seg_data_4;
+wire[3:0] data_4 = 4'd3;
+seg_decoder seg_decoder_m4(
+    .bin_data  (data_4),
+    .seg_led  (seg_data_4)
+);
+
+wire[6:0] seg_data_5;
+wire[3:0] data_5 = 4'd7;
+seg_decoder seg_decoder_m5(
+    .bin_data  (data_5),
+    .seg_led  (seg_data_5)
+);
+ 
+seg_scan seg_scan_m0(
+    .clk        (sys_clk),
+    .rst_n      (sys_rst_n),
+    .sel        (sel),
+    .seg_led   (seg_led),
+    .seg_data_0 ({1'b1,seg_data_0}),      //The  decimal point at the highest bit,and low level effecitve
+    .seg_data_1 ({1'b1,seg_data_1}), 
+    .seg_data_2 ({1'b1,seg_data_2}),
+    .seg_data_3 ({1'b1,seg_data_3}),
+    .seg_data_4 ({1'b1,seg_data_4}),
+    .seg_data_5 ({1'b1,seg_data_5})
+); 
+endmodule
