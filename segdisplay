@@ -31,14 +31,14 @@ seg_decoder seg_decoder_m3(
     .seg_led  (seg_data_3)
 );
 wire[6:0] seg_data_4;
-wire[3:0] data_4 = 4'd3;
+wire[3:0] data_4 = 4'd6;
 seg_decoder seg_decoder_m4(
     .bin_data  (data_4),
     .seg_led  (seg_data_4)
 );
 
 wire[6:0] seg_data_5;
-wire[3:0] data_5 = 4'd7;
+wire[3:0] data_5 = 4'd3;
 seg_decoder seg_decoder_m5(
     .bin_data  (data_5),
     .seg_led  (seg_data_5)
